@@ -1,13 +1,20 @@
 ﻿using System;
-
+using Newtonsoft.Json;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace SizeTest
 {
 	public class App : Application
 	{
+		JsonSerializer serializer;
+		Dictionary<string,string> result;
+
 		public App ()
 		{
+			this.serializer = new JsonSerializer ();
+			this.result = JsonConvert.DeserializeObject ("{ \"auth\":\"12345\"}") 
+							as Dictionary<string, string>;
 			// The root page of your application
 			MainPage = new ContentPage {
 				Content = new StackLayout {
